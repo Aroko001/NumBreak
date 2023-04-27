@@ -39,6 +39,34 @@ if connection() is False:
     time.sleep(5)
     exit()
 
+def selfupdate():
+    clear()
+    print(f'{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.RED}#{colorama.Fore.LIGHTBLACK_EX}] Checking for updates...')
+    latest = requests.get("https://api.github.com/repos/Aroko001/NumBreak/releases/latest")
+    latest = latest.json()['tag_name']
+    latest = float(latest)
+    time.sleep(2)
+    if latest > 1.0:
+        print(f'{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.GREEN}${colorama.Fore.LIGHTBLACK_EX}] {colorama.Fore.GREEN}Good News! {colorama.Fore.RESET}NumBreak has an update. {colorama.Fore.RED}1.0 {colorama.Fore.RESET}-> {colorama.Fore.GREEN}{latest}{colorama.Fore.LIGHTBLACK_EX}\n')
+        cl = requests.get("https://api.github.com/repos/Aroko001/NumBreak/releases/latest")
+        cl = cl.json()['body']
+        print('\033[1m' + f'Changelog: \n{colorama.Fore.RESET}')
+        print(cl)
+        time.sleep(3)
+        print(f'\n{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.YELLOW}?{colorama.Fore.LIGHTBLACK_EX}] Do you want to download it? ({colorama.Fore.WHITE}yes{colorama.Fore.LIGHTBLACK_EX}/{colorama.Fore.WHITE}no{colorama.Fore.LIGHTBLACK_EX})')
+        ask = str(input('>>> '))
+        if ask == 'yes' or ask == 'y' or ask == 'YES' or ask == 'Y':
+            webbrowser.open_new_tab('https://github.com/Aroko001/NumBreak/releases/latest')
+            time.sleep(2)
+            exit()
+        elif ask == 'no' or ask == 'n' or ask == 'NO' or ask == 'N':
+            clear()
+    else:
+        print(f'{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.GREEN}+{colorama.Fore.LIGHTBLACK_EX}] You are up to date! Starting...')
+        time.sleep(3)
+        clear()
+selfupdate()
+
 def calc():
     ctypes.windll.kernel32.SetConsoleTitleW("NUMBREAK | Calculator")
     print(f"{colorama.Fore.LIGHTBLACK_EX}    Plus (+)")
