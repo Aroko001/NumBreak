@@ -106,8 +106,6 @@ def calc():
         time.sleep(5)
         Main()
 
-
-
 class Main():
     def __init__(self):
         self.gg = True
