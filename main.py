@@ -82,7 +82,7 @@ class Main():
         self.startlogo()
         self.options()
         ctypes.windll.kernel32.SetConsoleTitleW(f"NUMBREAK | Welcome, {os.getlogin()}")
-        while self.gg == True:
+        while self.gg is True:
             choose = input(str('\n @>  '))
             if(choose == str(1)):
                 clear()
