@@ -4,6 +4,7 @@ try:
     import sys
     import requests
     import ctypes
+    import webbrowser
     import time
     import colorama
 except ImportError:
