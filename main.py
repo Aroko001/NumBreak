@@ -4,13 +4,15 @@ try:
     import sys
     import requests
     import ctypes
+    from scapy.all import *
     import webbrowser
     import time
     import secrets
+    import socket
     import string
     import colorama
 except ImportError:
-    os.system('pip install colorama requests')
+    os.system('pip install colorama requests scapy')
     print('Please Re-Run The Program Or Install requirements.txt')
     input()
 
@@ -108,6 +110,29 @@ def calc():
         time.sleep(5)
         Main()
 
+def PortScan():
+    ctypes.windll.kernel32.SetConsoleTitleW("NUMBREAK | PortScan")
+    hostname = socket.gethostname()
+    ipaddress = socket.gethostbyname(hostname)
+    print(f"{colorama.Fore.LIGHTBLACK_EX}    Your IP Address: {ipaddress}")
+    typingPrint("Type Scanning IP: ")
+    scanip = input()
+    typingPrint("Type Scan Length: ")
+    scanlength = int(input())
+    scanleng = scanlength+1
+    for port in range(1, scanleng):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(0.1)
+        result = sock.connect_ex((scanip, port))
+        if result == 0:
+            typingPrint(f"{colorama.Fore.LIGHTGREEN_EX}The Port({port}) Is Open.")
+        else:
+            typingPrint(f"The Port({port}) Is Close.\n")
+        sock.close()
+    typingPrint("Successfully Port Scanned.")
+    time.sleep(3)
+    Main()
+
 def Passgen():
     ctypes.windll.kernel32.SetConsoleTitleW("NUMBREAK | Password Generator")
     typingPrint("Type Length: ")
@@ -140,6 +165,10 @@ class Main():
                 clear()
                 self.startlogo()
                 Passgen()
+            elif(choose == str(4)):
+                clear()
+                self.startlogo()
+                PortScan()
 
     def startlogo(self):
         print(f"""
@@ -156,6 +185,7 @@ class Main():
         print('[1] Exit')
         print('[2] Calculator')
         print('[3] Pass Generator')
+        print('[4] PortScan')
     
 if __name__ == '__main__':
     Main()
