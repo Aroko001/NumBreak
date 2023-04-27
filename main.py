@@ -14,7 +14,7 @@ except ImportError:
 colorama.init()
 
 def clear():
-    if platform.platform().startswith('Windows') == True:
+    if platform.platform().startswith('Windows') is True:
         return os.system("cls")
     else:
         return os.system("clear")
@@ -34,7 +34,7 @@ def connection():
     except (requests.ConnectionError, requests.Timeout) as exception:
         return False
 
-if connection() == False:
+if connection() is False:
     print(f'{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.RED}X{colorama.Fore.LIGHTBLACK_EX}] You need internet connection to run this program!')
     time.sleep(5)
     exit()
