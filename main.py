@@ -56,12 +56,16 @@ def selfupdate():
         time.sleep(3)
         print(f'\n{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.YELLOW}?{colorama.Fore.LIGHTBLACK_EX}] Do you want to download it? ({colorama.Fore.WHITE}yes{colorama.Fore.LIGHTBLACK_EX}/{colorama.Fore.WHITE}no{colorama.Fore.LIGHTBLACK_EX})')
         ask = str(input('>>> '))
-        if ask == 'yes' or ask == 'y' or ask == 'YES' or ask == 'Y':
+        if ask == 'yes':
             webbrowser.open_new_tab('https://github.com/Aroko001/NumBreak/releases/latest')
             time.sleep(2)
             exit()
-        elif ask == 'no' or ask == 'n' or ask == 'NO' or ask == 'N':
+        elif ask == 'no':
             clear()
+        else:
+            print("Please Answer On Yes Or No.")
+            time.sleep(3)
+            selfupdate()
     else:
         print(f'{colorama.Fore.LIGHTBLACK_EX}[{colorama.Fore.GREEN}+{colorama.Fore.LIGHTBLACK_EX}] You are up to date! Starting...')
         time.sleep(3)
